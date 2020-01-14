@@ -4,11 +4,7 @@
  *
  */
 
-{{#if memo}}
-import React, { memo } from 'react';
-{{else}}
-import React from 'react';
-{{/if}}
+import React, { Fragment } from 'react';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -17,14 +13,29 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 {{/if}}
 
-function {{ properCase name }}() {
-  return (
-    <div>
-    {{#if wantMessages}}
-      <FormattedMessage {...messages.header} />
-    {{/if}}
-    </div>
-  );
+
+{{#if wantLessFiles}}
+import './index.less';
+{{/if}}
+
+
+export class {{ properCase name }} extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  render() {
+
+      return (
+          <div className='{{ properCase name }}'>
+
+          </div>
+        );
+  }
+
 }
 
 {{ properCase name }}.propTypes = {};

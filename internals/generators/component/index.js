@@ -32,6 +32,13 @@ module.exports = {
       default: false,
       message: 'Do you want to wrap your component in React.memo?',
     },
+
+    {
+      type:'confirm',
+      name:'wantLessFiles',
+      default: true,
+      message: 'Do you want less file (name is index.less)?',
+    },
     {
       type: 'confirm',
       name: 'wantMessages',
@@ -61,6 +68,15 @@ module.exports = {
         abortOnFail: true,
       },
     ];
+
+    if(data.wantLessFiles) {
+      actions.push({
+        type: 'add',
+        path: '../../app/components/{{properCase name}}/index.less',
+        abortOnFail: true,
+      });
+    }
+
 
     // If the user wants i18n messages
     if (data.wantMessages) {

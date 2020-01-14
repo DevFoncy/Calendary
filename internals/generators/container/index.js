@@ -35,6 +35,12 @@ module.exports = {
       message: 'Do you want headers?',
     },
     {
+      type:'confirm',
+      name:'wantLessFiles',
+      default: true,
+      message: 'Do you want less file (name is index.less)?',
+    },
+    {
       type: 'confirm',
       name: 'wantActionsAndReducer',
       default: true,
@@ -83,6 +89,14 @@ module.exports = {
         type: 'add',
         path: '../../app/containers/{{properCase name}}/messages.js',
         templateFile: './container/messages.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    if(data.wantLessFiles) {
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/index.less',
         abortOnFail: true,
       });
     }
