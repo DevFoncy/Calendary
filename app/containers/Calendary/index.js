@@ -20,16 +20,17 @@ import './index.less';
 import saga from './saga';
 
 import {Layout, Menu, Breadcrumb, Spin} from 'antd';
+const { Header, Content, Footer } = Layout;
 import {getWeatherWatcher} from "./actions";
 import WeatherResult from "../../components/WeatherResult";
 import CalendaryComponent from "../../components/CalendaryComponent";
-const { Header, Content, Footer } = Layout;
 
 export class Calendary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showWeather: false,
+      showWeather: false
+
     };
   }
 
@@ -37,7 +38,9 @@ export class Calendary extends React.Component {
     this.props.getWeatherApi();
   }
 
+
   componentWillUnmount() {}
+
 
   render() {
     // console.log('this.props',this.props);
@@ -47,25 +50,24 @@ export class Calendary extends React.Component {
           <title>Calendary</title>
           <meta name="description" content="Description of Calendary" />
         </Helmet>
-        <Layout className="layout">
-          <Content style={{ padding: '0 50px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>Challengue</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-              {!this.props.isLoadingWeather ? (
-                <WeatherResult callMethod={ this.props.getWeatherApi}  weather = {this.props.weather}/>
-                />
-              ) : (
-                <div className="loadingSpin">
-                  <Spin size="large"/>
-                </div>
-              )}
-              <CalendaryComponent callMethod={ this.props.getWeatherApi}/>
-            </div>
-          </Content>
-        </Layout>
+          <Layout className="layout">
+            <Content style={{ padding: '0 50px' }}>
+              <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>Home</Breadcrumb.Item>
+                <Breadcrumb.Item>Challengue</Breadcrumb.Item>
+              </Breadcrumb>
+              <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+                {!this.props.isLoadingWeather ? (
+                   <WeatherResult callMethod={ this.props.getWeatherApi}  weather = {this.props.weather}/>
+                ) : (
+                  <div className="loadingSpin">
+                    <Spin size="large"/>
+                  </div>
+                )}
+                <CalendaryComponent callMethod={ this.props.getWeatherApi}/>
+              </div>
+            </Content>
+          </Layout>
       </Fragment>
     );
   }
@@ -77,13 +79,13 @@ Calendary.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   calendary: makeSelectCalendary(),
-  weather: makeSelectWeather(),
+  weather : makeSelectWeather(),
   isLoadingWeather: makeSelectisLoadingWeather(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    getWeatherApi: params => dispatch(getWeatherWatcher(params)),
+    getWeatherApi : params => dispatch(getWeatherWatcher(params))
   };
 }
 
